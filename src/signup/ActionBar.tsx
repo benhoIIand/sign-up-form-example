@@ -5,7 +5,7 @@ const ActionBar: React.FC<{
   onContinue: Function;
 }> = ({ continueEnabled, onContinue }) => {
   return (
-    <button disabled={!continueEnabled} onClick={() => onContinue()}>
+    <button disabled={!continueEnabled} onClick={() => onContinue()} data-testid="action-bar_continue-button">
       Continue
     </button>
   );
