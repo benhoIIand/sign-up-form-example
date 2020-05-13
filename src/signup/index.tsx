@@ -1,16 +1,16 @@
-import React, { useState } from "react";
-import { PrivacyPreferences } from "../entities/PrivacyPreferences";
-import { SignUpFormData } from "../entities/SignUpFormData";
-import { PartialFormDataChange, Step } from "../entities/Step";
-import { UserToCreate } from "../entities/User";
-import DoneStep from "./steps/Done";
-import PrivacyStep from "./steps/Privacy";
-import UserStep from "./steps/User";
+import React, { useState } from 'react';
+import { PrivacyPreferences } from '../entities/PrivacyPreferences';
+import { SignUpFormData } from '../entities/SignUpFormData';
+import { PartialFormDataChange, Step } from '../entities/Step';
+import { UserToCreate } from '../entities/User';
+import DoneStep from './steps/Done';
+import PrivacyStep from './steps/Privacy';
+import UserStep from './steps/User';
 
 const userStep: Step<SignUpFormData, UserToCreate> = {
   key: "user",
   title: "User",
-  defaultValues: { name: "", email: "", password: "" },
+  defaultValues: { name: "", email: "", password: "", role: undefined },
   Component: UserStep,
 };
 
