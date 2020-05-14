@@ -1,9 +1,14 @@
 import React, { ChangeEvent } from "react";
-import { SignUpFormData } from '../../entities/SignUpFormData';
-import ActionBar from "../ActionBar";
+import ActionBar from "../../components/ActionBar";
+import { ConditionalStepperContent } from "../../components/ConditionalStepper";
+import { SignUpFormData } from "../../entities/SignUpFormData";
 import { StepComponent } from "../../entities/Step";
 
-const PrivacyStep: StepComponent<SignUpFormData> = ({ stepperData, onChange, onSubmit }) => {
+const PrivacyStep: StepComponent<SignUpFormData> = ({
+  stepperData,
+  onChange,
+  onSubmit,
+}) => {
   const isValid = true;
 
   const setValue = (event: ChangeEvent<HTMLInputElement>) => {
@@ -15,16 +20,10 @@ const PrivacyStep: StepComponent<SignUpFormData> = ({ stepperData, onChange, onS
   };
 
   return (
-    <div>
-      <div>
-        <b>Privacy</b>
-      </div>
-      <div>
+    <>
+      <ConditionalStepperContent>
         <div>
           {/* TODO: Convert these to use the FormField component /*/}
-          <label htmlFor="updatesByEmail">
-            Receive updates about Tray.io product by email
-          </label>
           <input
             type="checkbox"
             id="updatesByEmail"
@@ -33,12 +32,13 @@ const PrivacyStep: StepComponent<SignUpFormData> = ({ stepperData, onChange, onS
             onChange={setValue}
             data-testid="privacy_updatesByEmail"
           />
-        </div>
-        <div>
-          <label htmlFor="updatesFromOtherProducts">
-            Receive communication by email for other products created by the
-            Tray.io team
+          <label htmlFor="updatesByEmail">
+            Receive updates about Tray.io product by email
           </label>
+        </div>
+        {/* TODO: Sorry about this - needed spacing in a quick way */}
+        <br />
+        <div>
           <input
             type="checkbox"
             id="updatesFromOtherProducts"
@@ -47,13 +47,14 @@ const PrivacyStep: StepComponent<SignUpFormData> = ({ stepperData, onChange, onS
             onChange={setValue}
             data-testid="privacy_updatesFromOtherProducts"
           />
+          <label htmlFor="updatesFromOtherProducts">
+            Receive communication by email for other products created by the
+            Tray.io team
+          </label>
         </div>
-      </div>
-      <ActionBar
-        continueEnabled={isValid}
-        onContinue={onSubmit}
-      />
-    </div>
+      </ConditionalStepperContent>
+      <ActionBar continueEnabled={isValid} onContinue={onSubmit} />
+    </>
   );
 };
 export default PrivacyStep;

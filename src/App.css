@@ -1,0 +1,119 @@
+/* GLOBAL */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: Helvetica, Arial, serif;
+  font-size: 16px;
+}
+
+button {
+  padding: 0.5rem 1rem;
+  background-color: blueviolet;
+  border-radius: 3px;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  color: white;
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: .4;
+}
+
+input[type="checkbox"] + label {
+  margin-left: 0.5rem;
+}
+
+/* TODO: I'd normally use a JS solution for this (e.g. styled-components), but the CSS was already here and I didn't need much of it, so went old school */
+
+/* SIGNUP FORM */
+.signup-form {
+  width: 100%;
+  max-width: 600px;
+  border: 2px solid slategrey;
+  border-radius: 8px;
+  margin: 20% auto 0 auto;
+  overflow: hidden;
+}
+
+
+
+/* CONDITIONAL STEPPER */
+.conditional-stepper_container {
+  display: flex;
+  flex-direction: column;
+}
+
+.conditional-stepper_titles {
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1px solid slategrey;
+}
+
+.conditional-stepper_title {
+  flex: 1;
+  background-color: #f2f2f2;
+  color: #989898;
+  padding: 0.5rem 1rem;
+  text-align: center;
+}
+
+.conditional-stepper_title--active {
+  background-color: lightgrey;
+  color: inherit;
+  opacity: 1;
+}
+
+.conditional-stepper_title + .conditional-stepper_title {
+  border-left: 1px solid slategrey;
+}
+
+.conditional-stepper_step-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 400px;
+  padding: 1rem;
+}
+
+.conditional-stepper_step-content {
+  flex: 1;
+}
+
+.conditional-stepper_action-bar {
+  display: flex;
+  justify-content: flex-end;
+}
+
+
+
+
+/* FORM FIELD */
+.form-field {
+  margin-bottom: 1rem;
+}
+
+.form-field--error {
+  color: red;
+}
+
+.form-field_label {
+  display: block;
+  margin-bottom: 0.2rem;
+}
+
+.form-field_input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid slategrey;
+  font-size: .9rem;
+}
+
+.form-field--error .form-field_input {
+  border-color: red;
+}
+
+.form-field_error-message {
+  margin-top: 0.4rem;
+  font-size: 0.9rem;
+}

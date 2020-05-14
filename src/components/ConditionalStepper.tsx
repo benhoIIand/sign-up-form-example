@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import React, { useState } from "react";
 import { SignUpFormData } from "../entities/SignUpFormData";
 import { PartialFormDataChange, Step } from "../entities/Step";
@@ -16,6 +17,10 @@ const getDefaultFormValues = (steps: Step<any, any>[]): StepperData =>
 interface ConditionalStepperProps {
   steps: Step<any, any>[];
 }
+
+export const ConditionalStepperContent: React.FC = ({ children }) => {
+  return <div className="conditional-stepper_step-content">{children}</div>;
+};
 
 // TODO: This is currently covered by the E2E signup tests but could use some more granular testing
 const ConditionalStepper: React.FC<ConditionalStepperProps> = ({ steps }) => {
@@ -50,21 +55,26 @@ const ConditionalStepper: React.FC<ConditionalStepperProps> = ({ steps }) => {
   };
 
   return (
-    <div>
-      <div>
-        <ul>
-          {steps.map((step) => (
-            <li key={step.title}>{step.title}</li>
-          ))}
-        </ul>
+    <div className="conditional-stepper_container">
+      <div className="conditional-stepper_titles">
+        {steps.map((step, i) => (
+          <div
+            key={step.title}
+            className={clsx("conditional-stepper_title", {
+              "conditional-stepper_title--active": i === activeStepIndex,
+            })}
+          >
+            {step.title}
+          </div>
+        ))}
+      </div>
 
-        <div>
-          <Component
-            stepperData={data}
-            onChange={updateFormData}
-            onSubmit={nextStep}
-          />
-        </div>
+      <div className="conditional-stepper_step-container">
+        <Component
+          stepperData={data}
+          onChange={updateFormData}
+          onSubmit={nextStep}
+        />
       </div>
     </div>
   );

@@ -30,7 +30,9 @@ const doneStep: Step<SignUpFormData, null> = {
 };
 
 const SignUp: React.FC = () => {
-  return <ConditionalStepper steps={[userStep, privacyStep, doneStep]} />;
+  return <div className="signup-form">
+    <ConditionalStepper steps={[userStep, privacyStep, doneStep]} />
+  </div>;
 };
 
 export default SignUp;

@@ -1,10 +1,11 @@
 import React, { ChangeEvent } from "react";
+import ActionBar from "../../components/ActionBar";
+import { ConditionalStepperContent } from "../../components/ConditionalStepper";
 import FormField from "../../components/FormField";
 import { SignUpFormData } from "../../entities/SignUpFormData";
 import { StepComponent } from "../../entities/Step";
 import { UserToCreate, validationSchema } from "../../entities/User";
 import createValidator from "../../utils/validation";
-import ActionBar from "../ActionBar";
 
 const validate = createValidator(validationSchema);
 
@@ -28,10 +29,7 @@ const UserStep: StepComponent<SignUpFormData> = ({
   // TODO: Ideally use `react-final-form` here, but didn't seem necessary for this test
   return (
     <>
-      <div>
-        <b>User</b>
-      </div>
-      <div>
+      <ConditionalStepperContent>
         <FormField
           label="Name"
           required={true}
@@ -80,11 +78,8 @@ const UserStep: StepComponent<SignUpFormData> = ({
             onChange: setValue,
           }}
         />
-      </div>
-      <ActionBar
-        continueEnabled={isValid}
-        onContinue={onSubmit}
-      />
+      </ConditionalStepperContent>
+      <ActionBar continueEnabled={isValid} onContinue={onSubmit} />
     </>
   );
 };

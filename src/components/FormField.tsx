@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import clsx from 'clsx';
+import React, { useState } from 'react';
 
 export interface FormField {
   label: string;
@@ -18,10 +19,19 @@ const FormField: React.FC<FormField> = ({
   inputProps,
 }) => {
   const [dirty, setDirty] = useState(false);
+  const showError = errorMessage && dirty;
 
   return (
-    <div>
-      <label htmlFor={inputProps.id} data-testid={`form-field_label_${inputProps.id}`}>
+    <div
+      className={clsx("form-field", {
+        "form-field--error": showError,
+      })}
+    >
+      <label
+        htmlFor={inputProps.id}
+        data-testid={`form-field_label_${inputProps.id}`}
+        className="form-field_label"
+      >
         {`${label} ${required ? "*" : ""}`}
       </label>
       <input
@@ -29,9 +39,15 @@ const FormField: React.FC<FormField> = ({
         value={inputProps.value || ""}
         onBlur={() => setDirty(true)}
         data-testid={`form-field_input_${inputProps.id}`}
+        className="form-field_input"
       />
-      {errorMessage && dirty && (
-        <p data-testid={`form-field_error_${inputProps.id}`}>{errorMessage}</p>
+      {showError && (
+        <p
+          className="form-field_error-message"
+          data-testid={`form-field_error_${inputProps.id}`}
+        >
+          {errorMessage}
+        </p>
       )}
     </div>
   );
