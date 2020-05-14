@@ -5,20 +5,7 @@ import React from "react";
 import { SignUpFormData } from "../../../entities/SignUpFormData";
 import UserStep from "../User";
 
-const mockFormDataEmpty: SignUpFormData = {
-  user: {
-    name: "",
-    email: "",
-    password: "",
-    role: "",
-  },
-  privacy: {
-    updatesByEmail: false,
-    updatesFromOtherProducts: false,
-  },
-};
-
-const mockFormDataComplete: SignUpFormData = {
+const mockFormData: SignUpFormData = {
   user: {
     name: "Ben Holland",
     email: "benholland99@gmail.com",
@@ -33,27 +20,12 @@ const mockFormDataComplete: SignUpFormData = {
 
 const ACTION_BAR_CONTINUE_BUTTON_SELECTOR = "action-bar_continue-button";
 
-describe("UserStep", () => {
-  describe("when the form is invalid", () => {
-    test("the continue button is disabled", () => {
-      const { getByTestId } = render(
-        <UserStep
-          stepperData={mockFormDataEmpty}
-          onChange={() => {}}
-          onSubmit={() => {}}
-        />
-      );
-      const continueButton = getByTestId(ACTION_BAR_CONTINUE_BUTTON_SELECTOR);
-
-      expect(continueButton).toBeDisabled();
-    });
-  });
-
+describe("PrivacyStep", () => {
   describe("when the form is valid", () => {
     test("the continue button is enabled", () => {
       const { getByTestId } = render(
         <UserStep
-          stepperData={mockFormDataComplete}
+          stepperData={mockFormData}
           onChange={() => {}}
           onSubmit={() => {}}
         />
@@ -68,7 +40,7 @@ describe("UserStep", () => {
         const onSubmitSpy = jest.fn();
         const { getByTestId } = render(
           <UserStep
-            stepperData={mockFormDataComplete}
+            stepperData={mockFormData}
             onChange={() => {}}
             onSubmit={onSubmitSpy}
           />

@@ -5,7 +5,7 @@ type ValueOf<T> = T[keyof T];
 export type PartialFormDataChange<D> = Partial<ValueOf<D>>;
 
 export type StepComponent<D> = React.FC<{
-  formData: D;
+  stepperData: D;
   onChange: (data: PartialFormDataChange<D>) => void;
   onSubmit: (msg: string) => void;
 }>;

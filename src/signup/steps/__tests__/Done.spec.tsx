@@ -24,7 +24,7 @@ describe("DoneStep", () => {
   test("renders a done message", () => {
     const { getByText } = render(
       <DoneStep
-        formData={mockFormData}
+        stepperData={mockFormData}
         onChange={() => {}}
         onSubmit={() => {}}
       />
@@ -34,9 +34,9 @@ describe("DoneStep", () => {
   });
 
   test("logs the form data", () => {
-    const { getByText } = render(
+    render(
       <DoneStep
-        formData={mockFormData}
+        stepperData={mockFormData}
         onChange={() => {}}
         onSubmit={() => {}}
       />

@@ -10,6 +10,7 @@ export interface FormField {
   >;
 }
 
+// TODO: Need to make sure that `inputProps.id` is passed
 const FormField: React.FC<FormField> = ({
   label,
   required,
@@ -20,16 +21,18 @@ const FormField: React.FC<FormField> = ({
 
   return (
     <div>
-      <label htmlFor={inputProps.id}>
-        {label}
-        {required ? "*" : ""}
+      <label htmlFor={inputProps.id} data-testid={`form-field_label_${inputProps.id}`}>
+        {`${label} ${required ? "*" : ""}`}
       </label>
       <input
         {...inputProps}
         value={inputProps.value || ""}
         onBlur={() => setDirty(true)}
+        data-testid={`form-field_input_${inputProps.id}`}
       />
-      {errorMessage && dirty && <p>{errorMessage}</p>}
+      {errorMessage && dirty && (
+        <p data-testid={`form-field_error_${inputProps.id}`}>{errorMessage}</p>
+      )}
     </div>
   );
 };

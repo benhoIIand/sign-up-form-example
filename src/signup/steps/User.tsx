@@ -9,11 +9,11 @@ import ActionBar from "../ActionBar";
 const validate = createValidator(validationSchema);
 
 const UserStep: StepComponent<SignUpFormData> = ({
-  formData,
+  stepperData,
   onChange,
   onSubmit,
 }) => {
-  const { user } = formData;
+  const { user } = stepperData;
   const errors = validate<UserToCreate>(user);
   const isValid = errors === undefined;
 
@@ -38,7 +38,7 @@ const UserStep: StepComponent<SignUpFormData> = ({
           errorMessage={errors?.name}
           inputProps={{
             type: "text",
-            id: "users_name",
+            id: "name",
             name: "name",
             value: user.name,
             onChange: setValue,
@@ -50,7 +50,7 @@ const UserStep: StepComponent<SignUpFormData> = ({
           errorMessage={errors?.role}
           inputProps={{
             type: "text",
-            id: "users_role",
+            id: "role",
             name: "role",
             value: user.role,
             onChange: setValue,
@@ -62,7 +62,7 @@ const UserStep: StepComponent<SignUpFormData> = ({
           errorMessage={errors?.email}
           inputProps={{
             type: "text",
-            id: "users_email",
+            id: "email",
             name: "email",
             value: user.email,
             onChange: setValue,
@@ -74,7 +74,7 @@ const UserStep: StepComponent<SignUpFormData> = ({
           errorMessage={errors?.password}
           inputProps={{
             type: "password",
-            id: "users_password",
+            id: "password",
             name: "password",
             value: user.password,
             onChange: setValue,
@@ -83,7 +83,7 @@ const UserStep: StepComponent<SignUpFormData> = ({
       </div>
       <ActionBar
         continueEnabled={isValid}
-        onContinue={() => onSubmit("step 1")}
+        onContinue={onSubmit}
       />
     </>
   );
